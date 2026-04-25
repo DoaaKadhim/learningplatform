@@ -1,11 +1,10 @@
 package com.learningplatform.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
+import jakarta.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
+@Table(name = "user_learning_activity")
 public class UserLearningActivity {
 
     @Id
@@ -15,9 +14,20 @@ public class UserLearningActivity {
     private String userId;
     private String topic;
     private int score;
-    private int timeSpent; // minutes
+    private int timeSpent;
+    private LocalDateTime timestamp;
 
-    public UserLearningActivity() {}
+    public UserLearningActivity() {
+        this.timestamp = LocalDateTime.now();
+    }
+
+    public UserLearningActivity(String userId, String topic, int score, int timeSpent) {
+        this.userId = userId;
+        this.topic = topic;
+        this.score = score;
+        this.timeSpent = timeSpent;
+        this.timestamp = LocalDateTime.now();
+    }
 
     public Long getId() {
         return id;
@@ -53,5 +63,13 @@ public class UserLearningActivity {
 
     public void setTimeSpent(int timeSpent) {
         this.timeSpent = timeSpent;
+    }
+
+    public LocalDateTime getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(LocalDateTime timestamp) {
+        this.timestamp = timestamp;
     }
 }

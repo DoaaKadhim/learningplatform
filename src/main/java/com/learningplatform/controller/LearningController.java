@@ -1,10 +1,12 @@
 package com.learningplatform.controller;
 
+import java.util.List;
+import java.util.Map;
+
 import com.learningplatform.model.UserLearningActivity;
 import com.learningplatform.service.LearningService;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/learning")
@@ -16,15 +18,24 @@ public class LearningController {
         this.service = service;
     }
 
-    // 1. Save learning activity
-    @PostMapping("/activity")
-    public UserLearningActivity addActivity(@RequestBody UserLearningActivity activity) {
-        return service.saveActivity(activity);
+    // Save activity
+   @PostMapping("/activities")
+   public List<UserLearningActivity> addActivities(@RequestBody List<UserLearningActivity> activities) {
+        return activities.stream()
+            .map(service::saveActivity)
+            .toList();
     }
 
-    // 2. Get all activities of a user
-    @GetMapping("/user/{userId}")
-    public List<UserLearningActivity> getUserActivities(@PathVariable String userId) {
-        return service.getUserActivities(userId);
+    // Analytics
+    @GetMapping("/analytics/user/{userId}")
+    public Map<String, Object> getAnalytics(@PathVariable String userId) {
+        return service.getAnalytics(userId);
     }
+
+    // AI Recommendation
+    @GetMapping("/recommendation/user/{userId}")
+    public Map<String, Object> getRecommendation(@PathVariable String userId) {
+        return service.getRecommendation(userId);
+    }
+
 }
