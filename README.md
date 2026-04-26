@@ -1,38 +1,32 @@
-# Learning Behavior Analytics Backend API
+# 📚 Learning Behavior Analytics Backend API
 
-## 🧠 Project Overview
+## 🧠 Overview
 
-This project is a backend system built with Java and Spring Boot that captures, stores, and organizes user learning behavior in a structured way.
+The Learning Behavior Analytics Backend API is a Spring Boot application designed to track, analyze, and interpret user learning activities.
 
-Instead of treating learning as simple course completion or static grading, this system models learning as a continuous stream of measurable interactions.
+Instead of treating learning as static scores or course completion, this system models it as a continuous stream of behavioral data. Each activity contributes to understanding user performance trends over time.
 
-Each interaction becomes a data point that can later be analyzed to understand performance trends, learning efficiency, and user progress over time.
-
-The long-term goal of this system is to serve as the foundation for an **adaptive learning analytics engine** capable of supporting personalization and recommendation features.
+The system also generates **adaptive learning insights** using rule-based intelligence, simulating an AI-style recommendation engine.
 
 ---
 
 ## 💡 Core Concept
 
-Traditional learning systems mainly store static information such as users, courses, and grades.
+Traditional learning systems store static academic results.
 
-This system takes a different approach:
+This system treats learning as **behavioral analytics data**, where each interaction provides insights into:
 
-> It treats learning as behavioral data rather than static records.
+- Performance progression
+- Weak subject areas
+- Learning efficiency
+- Personalized recommendations
 
-Every learning activity captures:
+Each record includes:
 
-- The user performing the action
-- The topic being studied
-- The score achieved
-- The time spent on the task
-
-By structuring data this way, the system can later support deeper insights such as:
-
-- Identifying weak topics per user
-- Tracking improvement over time
-- Measuring learning efficiency
-- Supporting adaptive recommendations in future versions
+- User ID
+- Topic
+- Score
+- Time spent
 
 ---
 
@@ -42,28 +36,28 @@ By structuring data this way, the system can later support deeper insights such 
 - Spring Boot 3
 - Spring Web (REST APIs)
 - Spring Data JPA
-- H2 Database (development)
+- Hibernate
+- H2 Database
 - Maven
 
 ---
 
-## 🏗️ Architecture
+## 🏗️ System Architecture
 
-The system follows a clean layered architecture:
+The system follows a layered architecture:
 
-
-### Layers Description:
-
-- **Controller Layer** → Handles incoming REST API requests  
-- **Service Layer** → Contains business logic  
-- **Repository Layer** → Handles database operations using JPA  
-- **Model Layer** → Defines data structure for learning activities  
+- **Controller Layer** → Handles REST API requests
+- **Service Layer** → Contains business logic and analytics processing
+- **Repository Layer** → Manages database operations using JPA
+- **Model Layer** → Defines entity structure
 
 ---
 
-## 📊 Data Model Example
+## 📊 Data Model
 
-```json
+### UserLearningActivity
+
+```json id="mdl001"
 {
   "id": 1,
   "userId": "u1",
